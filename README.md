@@ -66,20 +66,24 @@
 		</td>
 	</tr>
 <tr>
-        <td align="center" width="33%">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linux.svg" alt="Linux" height="32">
-          <pre><code>curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/linux.sh | bash</code></pre>
-        </td>
-        <!-- macOS -->
-        <td align="center" width="33%">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/apple.svg" alt="macOS" height="32">
-          <pre><code>curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/mac.sh | bash</code></pre>
-        </td>
-        <!-- Windows -->
-        <td align="center" width="33%">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/windows.svg" alt="Windows" height="32">
-          <pre><code>powershell -Command "& {iwr https://raw.githubusercontent.com/zoyern/nexus/main/windows.bat -OutFile windows.bat; .\windows.bat}"</code></pre>
-        </td>
+  <!-- Linux -->
+  <td align="center" width="33%">
+    <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Ftree%2Fmain%2Fnexus" target="_blank">
+      <img src="https://img.shields.io/badge/Linux-Download-555?logo=linux&logoColor=white&style=for-the-badge" alt="Download Linux.sh">
+    </a>
+  </td>
+  <!-- macOS -->
+  <td align="center" width="33%">
+    <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Ftree%2Fmain%2Fnexus" target="_blank">
+      <img src="https://img.shields.io/badge/macOS-Download-555?logo=apple&logoColor=white&style=for-the-badge" alt="Download macOS.sh">
+    </a>
+  </td>
+  <!-- Windows -->
+  <td align="center" width="33%">
+    <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Ftree%2Fmain%2Fnexus" target="_blank">
+      <img src="https://img.shields.io/badge/Windows-Download-555?logo=windows&logoColor=white&style=for-the-badge" alt="Download Windows.bat">
+    </a>
+  </td>
 </tr>
 		<!-------------------------------->
 		<!-- Autowidth size ty github ! -->
@@ -115,6 +119,7 @@
 		</td>
 	</tr>
 </table>
+
 
 
 
