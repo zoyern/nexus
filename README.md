@@ -69,22 +69,23 @@
   <!-- Linux -->
   <td align="center" width="33%">
     <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Ftree%2Fmain%2Fnexus" target="_blank">
-      <img src="https://img.shields.io/badge/Linux-Download-555?logo=linux&logoColor=white&style=for-the-badge" alt="Download Linux.sh">
+      <img src="https://img.shields.io/badge/Linux-Download-555?logo=linux&logoColor=white&style=for-the-badge&logoWidth=40" alt="Download Linux.sh">
     </a>
   </td>
   <!-- macOS -->
   <td align="center" width="33%">
     <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Ftree%2Fmain%2Fnexus" target="_blank">
-      <img src="https://img.shields.io/badge/macOS-Download-555?logo=apple&logoColor=white&style=for-the-badge" alt="Download macOS.sh">
+      <img src="https://img.shields.io/badge/macOS-Download-555?logo=apple&logoColor=white&style=for-the-badge&logoWidth=40" alt="Download macOS.sh">
     </a>
   </td>
   <!-- Windows -->
   <td align="center" width="33%">
     <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Ftree%2Fmain%2Fnexus" target="_blank">
-      <img src="https://img.shields.io/badge/Windows-Download-555?logo=windows&logoColor=white&style=for-the-badge" alt="Download Windows.bat">
+      <img src="https://img.shields.io/badge/Windows-Download-555?logo=windows&logoColor=white&style=for-the-badge&logoWidth=40" alt="Download Windows.bat">
     </a>
   </td>
 </tr>
+
 		<!-------------------------------->
 		<!-- Autowidth size ty github ! -->
 		<!-------------------------------->
@@ -119,6 +120,7 @@
 		</td>
 	</tr>
 </table>
+
 
 
 
