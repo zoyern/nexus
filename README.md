@@ -66,24 +66,25 @@
 		</td>
 	</tr>
 <tr>
+<td align="center" width="100%">
   <!-- Linux -->
-  <td align="center" width="33%">
-    <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Ftree%2Fmain%2Fnexus" target="_blank">
-      <img src="https://img.shields.io/badge/Linux-Download-555?logo=linux&logoColor=white&style=for-the-badge&logoWidth=40" alt="Download Linux.sh">
-    </a>
-  </td>
+  <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Ftree%2Fmain%2Fnexus" target="_blank" style="margin:5px; display:inline-block;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Tux.png" alt="Linux" height="48" style="vertical-align:middle;">
+    <span style="background-color:#555;color:white;padding:5px 10px;border-radius:5px;font-weight:bold;vertical-align:middle;">Download</span>
+  </a>
+
   <!-- macOS -->
-  <td align="center" width="33%">
-    <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Ftree%2Fmain%2Fnexus" target="_blank">
-      <img src="https://img.shields.io/badge/macOS-Download-555?logo=apple&logoColor=white&style=for-the-badge&logoWidth=40" alt="Download macOS.sh">
-    </a>
-  </td>
+  <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Ftree%2Fmain%2Fnexus" target="_blank" style="margin:5px; display:inline-block;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="macOS" height="48" style="vertical-align:middle;">
+    <span style="background-color:#555;color:white;padding:5px 10px;border-radius:5px;font-weight:bold;vertical-align:middle;">Download</span>
+  </a>
+
   <!-- Windows -->
-  <td align="center" width="33%">
-    <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Ftree%2Fmain%2Fnexus" target="_blank">
-      <img src="https://img.shields.io/badge/Windows-Download-555?logo=windows&logoColor=white&style=for-the-badge&logoWidth=40" alt="Download Windows.bat">
-    </a>
-  </td>
+  <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Ftree%2Fmain%2Fnexus" target="_blank" style="margin:5px; display:inline-block;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2021.svg" alt="Windows" height="48" style="vertical-align:middle;">
+    <span style="background-color:#555;color:white;padding:5px 10px;border-radius:5px;font-weight:bold;vertical-align:middle;">Download</span>
+  </a>
+</td>
 </tr>
 		<!-------------------------------->
 		<!-- Autowidth size ty github ! -->
@@ -119,6 +120,7 @@
 		</td>
 	</tr>
 </table>
+
 
 
 
