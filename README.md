@@ -66,20 +66,20 @@
 		</td>
 	</tr>
 <tr>
-<td align="center" width="100%">
+<td align="center" width="100%" colspan="3">
   <!-- Linux -->
   <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Ftree%2Fmain%2Fnexus" target="_blank" style="margin:5px; display:inline-block;">
-    <img src="https://img.shields.io/badge/Linux-Download-555?logo=linux&logoColor=FCC624&style=for-the-badge" alt="Download Linux.sh" height="50">
+    <img src="https://img.shields.io/badge/Linux-Download-333?logo=linux&logoColor=FCC624&style=for-the-badge" alt="Download Linux.sh" height="50">
   </a>
 
   <!-- macOS -->
   <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Ftree%2Fmain%2Fnexus" target="_blank" style="margin:5px; display:inline-block;">
-    <img src="https://img.shields.io/badge/macOS-Download-555?logo=apple&logoColor=F0F0F0&style=for-the-badge" alt="Download macOS.sh" height="50">
+    <img src="https://img.shields.io/badge/macOS-Download-333?logo=apple&logoColor=F0F0F0&style=for-the-badge" alt="Download macOS.sh" height="50">
   </a>
 
   <!-- Windows -->
   <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Ftree%2Fmain%2Fnexus" target="_blank" style="margin:5px; display:inline-block;">
-    <img src="https://custom-icon-badges.demolab.com/badge/Windows-Download-555?logo=windows11&logoColor=0078D6&style=for-the-badge" alt="Download Windows.bat" height="50">
+    <img src="https://custom-icon-badges.demolab.com/badge/Windows-Download-333?logo=windows11&logoColor=0078D6&style=for-the-badge" alt="Download Windows.bat" height="50">
   </a>
 </td>
 </tr>
@@ -117,6 +117,7 @@
 		</td>
 	</tr>
 </table>
+
 
 
 
