@@ -65,22 +65,27 @@
 			<b>Projects</b>
 		</td>
 	</tr>
-		<tr>
-			<td align="center" colspan="3" width="100%">
-    			<pre><code class="bash">curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/linux.sh | bash</code></pre>
-				<pre><code class="c">#include &lt;stdio.h&gt;
-			int main(void) {
-			    return 0;
-			}
-			</code></pre>
-			</td>
-		</tr>
-		<!-- Séparateur -->
-		<tr>
-			<td colspan="3">
-				<img src="https://raw.githubusercontent.com/zoyern/zoyern/main/assets/images/sep.gif" width="100%" height="10px">
-			</td>
-		</tr>
+<tr>
+  <td align="center" colspan="3">
+    <pre><code>
+# Bash : lance le script Nexus
+curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/linux.sh | bash
+    </code></pre>
+  </td>
+</tr>
+
+<tr>
+  <td align="center" colspan="3">
+    <pre><code>
+/* C : main vide pour exemple */
+#include &lt;stdio.h&gt;
+
+int main(void) {
+    return 0;
+}
+    </code></pre>
+  </td>
+</tr>
 		<!-------------------------------->
 		<!-- Autowidth size ty github ! -->
 		<!-------------------------------->
@@ -115,5 +120,6 @@
 		</td>
 	</tr>
 </table>
+
 
 
