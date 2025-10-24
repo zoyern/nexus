@@ -67,9 +67,12 @@
 	</tr>
 		<tr>
 			<td align="center" colspan="3" width="100%">
-          ```bash
-          curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/linux.sh | bash
-          ```
+    			<pre><code class="bash">curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/linux.sh | bash</code></pre>
+				<pre><code class="c">#include &lt;stdio.h&gt;
+			int main(void) {
+			    return 0;
+			}
+			</code></pre>
 			</td>
 		</tr>
 		<!-- Séparateur -->
@@ -112,4 +115,5 @@
 		</td>
 	</tr>
 </table>
+
 
