@@ -4,19 +4,18 @@ FROM ubuntu:22.04
 # Évite les prompts interactifs
 ENV DEBIAN_FRONTEND=noninteractive
 
+# ============================
 # DÉPENDANCES DE BASE
-# Ajoutez vos dépendances au fur et à mesure ici
+# ============================
 RUN apt-get update && apt-get install -y \
-    # Outils essentiels
     curl \
     git \
-    # Éditeur
     nano \
     && rm -rf /var/lib/apt/lists/*
 
-# DÉPENDANCES PROJETS
-# Décommentez selon vos besoins:
-
+# ============================
+# DÉPENDANCES PROJETS (décommenter selon besoin)
+# ============================
 # Python
 # RUN apt-get update && apt-get install -y python3 python3-pip && rm -rf /var/lib/apt/lists/*
 
@@ -32,16 +31,21 @@ RUN apt-get update && apt-get install -y \
 # Go
 # RUN apt-get update && apt-get install -y golang && rm -rf /var/lib/apt/lists/*
 
+# ============================
 # Utilisateur non-root
+# ============================
 RUN useradd -m -s /bin/bash dev
+
+# Copier le script de démarrage et rendre exécutable
+COPY startup.sh /home/dev/startup.sh
+RUN chmod +x /home/dev/startup.sh
+
+# Passer à l'utilisateur dev
 USER dev
 WORKDIR /workspace
-
-# Script de démarrage
-COPY startup.sh /home/dev/startup.sh
-RUN sudo chmod +x /home/dev/startup.sh
 
 # Terminal coloré
 RUN echo 'export PS1="\[\e[1;32m\]nexus\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]$ "' >> ~/.bashrc
 
+# Script de démarrage
 CMD ["/home/dev/startup.sh"]
