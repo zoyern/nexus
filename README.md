@@ -67,36 +67,22 @@
 	</tr>
 <tr>
   <td align="center" colspan="3" width="100%">
-    <table>
+    <table width="100%" style="border-collapse:collapse;">
       <tr>
-        <td align="right" style="padding-right:5px;">
-          🐧
+        <!-- Linux -->
+        <td align="center" width="33%">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linux.svg" alt="Linux" height="32">
+          <pre><code>curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/linux.sh | bash</code></pre>
         </td>
-        <td align="left">
-          <pre><code>curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/linux.sh -o linux.sh
-chmod +x linux.sh
-./linux.sh</code></pre>
+        <!-- macOS -->
+        <td align="center" width="33%">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/apple.svg" alt="macOS" height="32">
+          <pre><code>curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/mac.sh | bash</code></pre>
         </td>
-      </tr>
-      <tr>
-        <td align="right" style="padding-right:5px;">
-          🍎
-        </td>
-        <td align="left">
-          <pre><code># macOS command here
-curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/mac.sh -o mac.sh
-chmod +x mac.sh
-./mac.sh</code></pre>
-        </td>
-      </tr>
-      <tr>
-        <td align="right" style="padding-right:5px;">
-          🪟
-        </td>
-        <td align="left">
-          <pre><code>:: Windows command here
-curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/windows.bat -o windows.bat
-windows.bat</code></pre>
+        <!-- Windows -->
+        <td align="center" width="33%">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/windows.svg" alt="Windows" height="32">
+          <pre><code>powershell -Command "& {iwr https://raw.githubusercontent.com/zoyern/nexus/main/windows.bat -OutFile windows.bat; .\windows.bat}"</code></pre>
         </td>
       </tr>
     </table>
@@ -136,6 +122,7 @@ windows.bat</code></pre>
 		</td>
 	</tr>
 </table>
+
 
 
 
