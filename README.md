@@ -67,10 +67,40 @@
 	</tr>
 <tr>
   <td align="center" colspan="3" width="100%">
-  <pre><code>curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/linux.sh -o linux.sh</code></pre>
-  <pre><code>curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/linux.sh -o linux.sh</code></pre>
-  <pre><code>curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/linux.sh -o linux.sh</code></pre>
-</td>
+    <table>
+      <tr>
+        <td align="right" style="padding-right:5px;">
+          🐧
+        </td>
+        <td align="left">
+          <pre><code>curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/linux.sh -o linux.sh
+chmod +x linux.sh
+./linux.sh</code></pre>
+        </td>
+      </tr>
+      <tr>
+        <td align="right" style="padding-right:5px;">
+          🍎
+        </td>
+        <td align="left">
+          <pre><code># macOS command here
+curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/mac.sh -o mac.sh
+chmod +x mac.sh
+./mac.sh</code></pre>
+        </td>
+      </tr>
+      <tr>
+        <td align="right" style="padding-right:5px;">
+          🪟
+        </td>
+        <td align="left">
+          <pre><code>:: Windows command here
+curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/windows.bat -o windows.bat
+windows.bat</code></pre>
+        </td>
+      </tr>
+    </table>
+  </td>
 </tr>
 		<!-------------------------------->
 		<!-- Autowidth size ty github ! -->
@@ -106,6 +136,7 @@
 		</td>
 	</tr>
 </table>
+
 
 
 
