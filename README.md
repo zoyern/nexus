@@ -66,10 +66,6 @@
 		</td>
 	</tr>
 <tr>
-  <td align="center" colspan="3" width="100%">
-    <table width="100%" style="border-collapse:collapse;">
-      <tr>
-        <!-- Linux -->
         <td align="center" width="33%">
           <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linux.svg" alt="Linux" height="32">
           <pre><code>curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/linux.sh | bash</code></pre>
@@ -84,9 +80,6 @@
           <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/windows.svg" alt="Windows" height="32">
           <pre><code>powershell -Command "& {iwr https://raw.githubusercontent.com/zoyern/nexus/main/windows.bat -OutFile windows.bat; .\windows.bat}"</code></pre>
         </td>
-      </tr>
-    </table>
-  </td>
 </tr>
 		<!-------------------------------->
 		<!-- Autowidth size ty github ! -->
@@ -122,6 +115,7 @@
 		</td>
 	</tr>
 </table>
+
 
 
 
