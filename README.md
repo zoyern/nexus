@@ -66,7 +66,7 @@
 		</td>
 	</tr>
 <tr>
-<td align="center" width="100%" colspan="3">
+<td align="center" width="100%">
   <!-- Linux -->
   <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Ftree%2Fmain%2Fnexus" target="_blank" style="margin:5px; display:inline-block;">
     <img src="https://img.shields.io/badge/Linux-Download-555?logo=linux&logoColor=white&style=for-the-badge" alt="Download Linux.sh" height="50">
@@ -79,7 +79,7 @@
 
   <!-- Windows -->
   <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Ftree%2Fmain%2Fnexus" target="_blank" style="margin:5px; display:inline-block;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2021.svg" alt="Download Windows.bat" height="50">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Windows_logo_-_2021.svg" alt="Download Windows.bat" height="50">
   </a>
 </td>
 </tr>
@@ -117,6 +117,7 @@
 		</td>
 	</tr>
 </table>
+
 
 
 
