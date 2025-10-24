@@ -67,10 +67,8 @@
 	</tr>
 <tr>
   <td align="center" colspan="3">
-	  <td align="center" colspan="3">
-  <p>Run Nexus script:</p>
-  <a href="https://gist.github.com/tongist" target="_blank">
-    <img src="https://img.shields.io/badge/View%20code-Gist-blue" alt="View code"/>
+  <a href="https://raw.githubusercontent.com/zoyern/nexus/main/linux.sh" download>
+    <img src="https://img.shields.io/badge/Download-linux.sh-brightgreen" alt="Download linux.sh">
   </a>
 </td>
 </tr>
@@ -108,6 +106,7 @@
 		</td>
 	</tr>
 </table>
+
 
 
 
