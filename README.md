@@ -67,10 +67,7 @@
 	</tr>
 <tr>
   <td align="center" colspan="3">
-  <a href="https://raw.githubusercontent.com/zoyern/nexus/main/linux.sh" target="_blank">
-    <img src="https://img.shields.io/badge/Download-linux.sh-brightgreen" alt="Download linux.sh">
-  </a>
-  <p><code>curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/linux.sh -o linux.sh</code></p>
+  <code>curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/linux.sh -o linux.sh</code>
 </td>
 </tr>
 		<!-------------------------------->
@@ -107,6 +104,7 @@
 		</td>
 	</tr>
 </table>
+
 
 
 
