@@ -66,8 +66,10 @@
 		</td>
 	</tr>
 <tr>
-  <td align="center" colspan="3">
-  <pre>curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/linux.sh -o linux.sh</pre>
+  <td align="center">
+  <pre><code>curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/linux.sh -o linux.sh</code></pre>
+  <pre><code>curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/linux.sh -o linux.sh</code></pre>
+  <pre><code>curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/linux.sh -o linux.sh</code></pre>
 </td>
 </tr>
 		<!-------------------------------->
@@ -104,6 +106,7 @@
 		</td>
 	</tr>
 </table>
+
 
 
 
