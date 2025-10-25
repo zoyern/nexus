@@ -1,5 +1,5 @@
 #!/bin/bash
-# Nexus - Quick Launch Linux / WSL2
+# Nexus - Quick Launch (Linux / WSL2)
 set -euo pipefail
 IFS=$'\n\t'
 
@@ -7,12 +7,12 @@ IMG="nexus_dev"
 BASE_DIR="$(pwd)/nexus"
 PROJECTS="$BASE_DIR/projects"
 MAX_WAIT=60
+FORCE_DOWNLOAD=false
 
 check_docker() {
     if ! command -v docker &>/dev/null; then
-        echo "[Docker missing] Docker Desktop is required on WSL2."
+        echo "[Docker missing] Docker Desktop is required."
         echo "Download here: https://docs.docker.com/desktop/release-notes/"
-        echo "Enable WSL2 integration in Settings > Resources > WSL Integration"
         read -p "Press Enter after installation to rerun this script..."
         exit 1
     fi
@@ -20,7 +20,7 @@ check_docker() {
     COUNT=0
     while ! docker info &>/dev/null; do
         if [ $COUNT -eq 0 ]; then
-            echo "[Docker inactive] Attempting to start Docker Desktop..."
+            echo "[Docker not running] Trying to start Docker Desktop..."
             powershell.exe -Command "Start-Process 'C:\Program Files\Docker\Docker\Docker Desktop.exe'"
         fi
         COUNT=$((COUNT+1))
@@ -34,12 +34,13 @@ check_docker() {
 }
 
 setup_dir() {
-    echo "Creating local Nexus directory..."
+    echo "Creating Nexus folder..."
     mkdir -p "$BASE_DIR"
-    if [[ ! -f "$BASE_DIR/Dockerfile" || ! -f "$BASE_DIR/startup.sh" ]]; then
-        echo "Downloading Dockerfile and startup script..."
-        curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/nexus/Dockerfile -o "$BASE_DIR/Dockerfile"
-        curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/nexus/startup.sh -o "$BASE_DIR/startup.sh"
+
+    if [[ "$FORCE_DOWNLOAD" = true || ! -f "$BASE_DIR/Dockerfile" || ! -f "$BASE_DIR/startup.sh" ]]; then
+        echo "Downloading Dockerfile and startup.sh..."
+        curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/assets/Dockerfile -o "$BASE_DIR/Dockerfile"
+        curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/assets/startup.sh -o "$BASE_DIR/startup.sh"
         chmod +x "$BASE_DIR/startup.sh"
     else
         echo "Dockerfile and startup.sh already exist, skipping download."
@@ -47,7 +48,7 @@ setup_dir() {
 }
 
 build_image() {
-    echo "Building Docker environment..."
+    echo "Building Docker image..."
     docker build -q -t "$IMG" "$BASE_DIR"
 }
 
@@ -60,30 +61,28 @@ run_nexus() {
 cleanup_prompt() {
     echo ""
     echo "=================== CLEANUP ==================="
-    echo "The Nexus directory contains Dockerfile, startup.sh, and temporary files."
-    echo "Docker image can be exported to $BASE_DIR/$IMG.tar"
-    echo "-------------------------------------------------"
-
+    echo "The 'projects/' folder will always be deleted."
     if [ -d "$PROJECTS" ]; then
         rm -rf "$PROJECTS"
         echo "[projects/ deleted ✅]"
     fi
 
-    read -rp "Delete the rest of the Nexus directory and Docker image? [y/N]: " RESPONSE
+    read -rp "Delete the rest of Nexus folder and Docker image? [y/N]: " RESPONSE
     RESPONSE=${RESPONSE:-N}
 
     if [[ "$RESPONSE" =~ ^[Yy]$ ]]; then
-        echo "Exporting Docker image to $BASE_DIR/$IMG.tar..."
+        echo "Saving Docker image..."
         docker save -o "$BASE_DIR/$IMG.tar" "$IMG"
         docker rmi "$IMG" 2>/dev/null || true
         rm -rf "$BASE_DIR"
         echo "[Nexus cleaned ✅]"
     else
-        echo "Docker image preserved in $BASE_DIR/$IMG.tar"
+        echo "Docker image is preserved at $BASE_DIR/$IMG.tar"
     fi
 }
 
-echo "=== Nexus Quick Install (Linux/WSL2) ==="
+### MAIN
+echo "=== Nexus Quick Launch (Linux / WSL2) ==="
 check_docker
 setup_dir
 build_image
