@@ -1,105 +1,89 @@
 #!/bin/bash
-# Nexus - Lancement rapide Linux / WSL2
+# Nexus - Quick Launch Linux / WSL2
 set -euo pipefail
 IFS=$'\n\t'
 
-### ===========================
-### CONFIGURATION
-### ===========================
-IMG="nexus_dev"                  # Nom de l'image Docker
-BASE_DIR="$(pwd)/nexus"          # Dossier local “nexus”
-PROJECTS="$BASE_DIR/projects"    # Dossier projets
-MAX_WAIT=60                      # Timeout Docker Desktop
-FORCE_DOWNLOAD=false             # Option future --force pour debug
+IMG="nexus_dev"
+BASE_DIR="$(pwd)/nexus"
+PROJECTS="$BASE_DIR/projects"
+MAX_WAIT=60
 
-### ===========================
-### FONCTIONS
-### ===========================
 check_docker() {
     if ! command -v docker &>/dev/null; then
-        echo "[Docker absent] Docker Desktop est obligatoire sur WSL2."
-        echo "Téléchargez-le ici : https://docs.docker.com/desktop/release-notes/"
-        echo "Activez WSL2 Integration dans Settings > Resources > WSL Integration"
-        read -p "Appuyez sur Entrée après installation pour relancer ce script..."
+        echo "[Docker missing] Docker Desktop is required on WSL2."
+        echo "Download here: https://docs.docker.com/desktop/release-notes/"
+        echo "Enable WSL2 integration in Settings > Resources > WSL Integration"
+        read -p "Press Enter after installation to rerun this script..."
         exit 1
     fi
 
     COUNT=0
     while ! docker info &>/dev/null; do
         if [ $COUNT -eq 0 ]; then
-            echo "[Docker non actif] Tentative d'ouverture automatique de Docker Desktop..."
-            powershell.exe -Command "Start-Process 'C:\Program Files\Docker\Docker\Docker Desktop.exe'" || true
+            echo "[Docker inactive] Attempting to start Docker Desktop..."
+            powershell.exe -Command "Start-Process 'C:\Program Files\Docker\Docker\Docker Desktop.exe'"
         fi
         COUNT=$((COUNT+1))
         if [ $COUNT -gt $MAX_WAIT ]; then
-            echo "[ERREUR] Docker Desktop n'a pas démarré dans $MAX_WAIT secondes."
-            echo "Vérifiez que WSL2 Integration est activée."
+            echo "[ERROR] Docker Desktop did not start within $MAX_WAIT seconds."
             exit 1
         fi
         sleep 2
     done
-
     echo "[Docker OK]"
 }
 
 setup_dir() {
-    echo "Création du dossier Nexus local..."
+    echo "Creating local Nexus directory..."
     mkdir -p "$BASE_DIR"
-
-    # Télécharger uniquement si fichiers absents ou force
-    if [[ "$FORCE_DOWNLOAD" = true || ! -f "$BASE_DIR/Dockerfile" || ! -f "$BASE_DIR/startup.sh" ]]; then
-        echo "Téléchargement des fichiers depuis GitHub..."
+    if [[ ! -f "$BASE_DIR/Dockerfile" || ! -f "$BASE_DIR/startup.sh" ]]; then
+        echo "Downloading Dockerfile and startup script..."
         curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/nexus/Dockerfile -o "$BASE_DIR/Dockerfile"
         curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/nexus/startup.sh -o "$BASE_DIR/startup.sh"
         chmod +x "$BASE_DIR/startup.sh"
     else
-        echo "Fichiers Dockerfile et startup.sh déjà présents, pas de téléchargement."
+        echo "Dockerfile and startup.sh already exist, skipping download."
     fi
 }
 
 build_image() {
-    echo "Construction de l'environnement Docker..."
+    echo "Building Docker environment..."
     docker build -q -t "$IMG" "$BASE_DIR"
 }
 
 run_nexus() {
-    echo "=== Lancement du terminal Nexus ==="
+    echo "=== Launching Nexus Terminal ==="
     mkdir -p "$PROJECTS"
     docker run -it --rm --name nexus_terminal -v "$PROJECTS:/workspace" "$IMG"
 }
 
 cleanup_prompt() {
     echo ""
-    echo "=================== NETTOYAGE ==================="
-    echo "Le dossier Nexus contient Dockerfile, startup.sh et tous les fichiers temporaires."
-    echo "L'image Docker sera exportée dans $BASE_DIR/$IMG.tar pour rester dans le dossier."
+    echo "=================== CLEANUP ==================="
+    echo "The Nexus directory contains Dockerfile, startup.sh, and temporary files."
+    echo "Docker image can be exported to $BASE_DIR/$IMG.tar"
     echo "-------------------------------------------------"
 
-    # Supprime toujours projects/
     if [ -d "$PROJECTS" ]; then
         rm -rf "$PROJECTS"
-        echo "[projects/ supprimé ✅]"
+        echo "[projects/ deleted ✅]"
     fi
 
-    read -rp "Supprimer le reste du dossier Nexus et l'image Docker ? [o/N]: " RESPONSE
+    read -rp "Delete the rest of the Nexus directory and Docker image? [y/N]: " RESPONSE
     RESPONSE=${RESPONSE:-N}
 
-    if [[ "$RESPONSE" =~ ^[Oo]$ ]]; then
-        echo "Export de l'image Docker dans $BASE_DIR/$IMG.tar..."
+    if [[ "$RESPONSE" =~ ^[Yy]$ ]]; then
+        echo "Exporting Docker image to $BASE_DIR/$IMG.tar..."
         docker save -o "$BASE_DIR/$IMG.tar" "$IMG"
         docker rmi "$IMG" 2>/dev/null || true
         rm -rf "$BASE_DIR"
-        echo "[Nexus nettoyé ✅]"
+        echo "[Nexus cleaned ✅]"
     else
-        echo "L'image Docker est conservée et peut être retrouvée dans $BASE_DIR/$IMG.tar"
+        echo "Docker image preserved in $BASE_DIR/$IMG.tar"
     fi
 }
 
-### ===========================
-### MAIN
-### ===========================
-echo "=== Nexus Installation rapide (Linux/WSL2) ==="
-
+echo "=== Nexus Quick Install (Linux/WSL2) ==="
 check_docker
 setup_dir
 build_image
