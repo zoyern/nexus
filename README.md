@@ -68,12 +68,12 @@
 <tr>
 <td align="center" width="100%" colspan="3">
   <!-- Linux -->
-  <a href="https://downgit.github.io/#/home?url=https:%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Fblob%2Fmain%2Flinux.sh" target="_blank" style="margin:5px; display:inline-block;">
+  <a href="https://downgit.github.io/#/home?url=https:%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Fblob%2Fmain%2Fsetup.sh" target="_blank" style="margin:5px; display:inline-block;">
     <img src="https://img.shields.io/badge/Linux-Download-333?logo=linux&logoColor=FCC624&style=for-the-badge" alt="Download Linux.sh" height="50">
   </a>
 
   <!-- macOS -->
-  <a href="https://downgit.github.io/#/home?url=https:%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Fblob%2Fmain%2Fmacos.sh" target="_blank" style="margin:5px; display:inline-block;">
+  <a href="https://downgit.github.io/#/home?url=https:%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Fblob%2Fmain%2Fsetup.sh" target="_blank" style="margin:5px; display:inline-block;">
     <img src="https://img.shields.io/badge/macOS-Download-333?logo=apple&logoColor=F0F0F0&style=for-the-badge" alt="Download macOS.sh" height="50">
   </a>
 
