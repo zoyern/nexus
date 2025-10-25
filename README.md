@@ -68,20 +68,21 @@
 <tr>
 <td align="center" width="100%" colspan="3">
   <!-- Linux -->
-  <a href="https://downgit.github.io/#/home?url=https://github.com/zoyern/nexus/blob/main/setup.sh" target="_blank" rel="noopener noreferrer" style="margin:5px; display:inline-block;">
+  <a href="https://downgit.github.io/#/home?url=https://github.com/zoyern/nexus/blob/main/setup.sh?v=1" target="_blank" rel="noopener noreferrer" style="margin:5px; display:inline-block;">
     <img src="https://img.shields.io/badge/Linux-Download-333?logo=linux&logoColor=FCC624&style=for-the-badge" alt="Download Linux.sh" height="50">
   </a>
 
   <!-- macOS -->
-  <a href="https://downgit.github.io/#/home?url=https://github.com/zoyern/nexus/blob/main/setup.sh" target="_blank" rel="noopener noreferrer" style="margin:5px; display:inline-block;">
+  <a href="https://downgit.github.io/#/home?url=https://github.com/zoyern/nexus/blob/main/setup.sh?v=2" target="_blank" rel="noopener noreferrer" style="margin:5px; display:inline-block;">
     <img src="https://img.shields.io/badge/macOS-Download-333?logo=apple&logoColor=F0F0F0&style=for-the-badge" alt="Download macOS.sh" height="50">
   </a>
 
   <!-- Windows -->
-  <a href="https://downgit.github.io/#/home?url=https://github.com/zoyern/nexus/blob/main/windows.bat" target="_blank" rel="noopener noreferrer" style="margin:5px; display:inline-block;">
+  <a href="https://downgit.github.io/#/home?url=https://github.com/zoyern/nexus/blob/main/windows.bat?v=3" target="_blank" rel="noopener noreferrer" style="margin:5px; display:inline-block;">
     <img src="https://custom-icon-badges.demolab.com/badge/Windows-Download-333?logo=windows11&logoColor=0078D6&style=for-the-badge" alt="Download Windows.bat" height="50">
   </a>
 </td>
+
 </tr>
 		<!-------------------------------->
 		<!-- Autowidth size ty github ! -->
@@ -117,6 +118,7 @@
 		</td>
 	</tr>
 </table>
+
 
 
 
