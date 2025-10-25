@@ -73,12 +73,12 @@
   </a>
 
   <!-- macOS -->
-  <a href="https://downgit.github.io/#/home?url=https:%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Fblob%2Fmain%2Flinux.sh" target="_blank" style="margin:5px; display:inline-block;">
+  <a href="https://downgit.github.io/#/home?url=https:%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Fblob%2Fmain%2Fmacos.sh" target="_blank" style="margin:5px; display:inline-block;">
     <img src="https://img.shields.io/badge/macOS-Download-333?logo=apple&logoColor=F0F0F0&style=for-the-badge" alt="Download macOS.sh" height="50">
   </a>
 
   <!-- Windows -->
-  <a href="https://downgit.github.io/#/home?url=https:%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Fblob%2Fmain%2Flinux.sh" target="_blank" style="margin:5px; display:inline-block;">
+  <a href="https://downgit.github.io/#/home?url=https:%2F%2Fgithub.com%2Fzoyern%2Fnexus%2Fblob%2Fmain%2Fwindows.bat" target="_blank" style="margin:5px; display:inline-block;">
     <img src="https://custom-icon-badges.demolab.com/badge/Windows-Download-333?logo=windows11&logoColor=0078D6&style=for-the-badge" alt="Download Windows.bat" height="50">
   </a>
 </td>
@@ -117,6 +117,7 @@
 		</td>
 	</tr>
 </table>
+
 
 
 
