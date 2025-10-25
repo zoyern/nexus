@@ -1,5 +1,5 @@
 #!/bin/bash
-# Nexus - Startup script
+# Nexus - Project launcher
 set -euo pipefail
 
 PROJECTS_DIR="/workspace/projects"
@@ -11,7 +11,6 @@ mkdir -p "$PROJECTS_DIR"
 # Format: "name|repo|description"
 PROJECTS=(
     "42_school|https://github.com/Alexis42/42_school|Exercices et projets de 42"
-    "test_app|https://github.com/user/test|Application de test"
 )
 
 ### ===========================
@@ -28,24 +27,23 @@ RESET='\033[0m'
 clear_screen() {
     clear
     echo -e "${CYAN}╔════════════════════════════════════════════════════════════════════════════╗${RESET}"
-    echo -e "${CYAN}║${RESET}                     ${BOLD}🚀 NEXUS DEV ENVIRONMENT${RESET}                               ${CYAN}║${RESET}"
+    echo -e "${CYAN}║${RESET}                     ${BOLD}🚀 NEXUS DEV ENVIRONMENT${RESET}                        ${CYAN}║${RESET}"
     echo -e "${CYAN}╚════════════════════════════════════════════════════════════════════════════╝${RESET}\n"
 }
 
 draw_table() {
-    local width=76
     echo -e "${DIM}┌────┬─────────────────────────┬────────────────────────────────────────────┐${RESET}"
-    echo -e "${DIM}│${RESET} ${BOLD}#${RESET}  ${DIM}│${RESET} ${BOLD}Project${RESET}                 ${DIM}│${RESET} ${BOLD}Description${RESET}                                ${DIM}${RESET}"
+    echo -e "${DIM}│${RESET} ${BOLD}#${RESET}  ${DIM}│${RESET} ${BOLD}Project${RESET}                 ${DIM}│${RESET} ${BOLD}Description${RESET}                                ${DIM}│${RESET}"
     echo -e "${DIM}├────┼─────────────────────────┼────────────────────────────────────────────┤${RESET}"
     
     for i in "${!PROJECTS[@]}"; do
         IFS="|" read -r name _ desc <<< "${PROJECTS[$i]}"
-        printf "${DIM}│${RESET} ${GREEN}%-2s${RESET} ${DIM}│${RESET} %-23s ${DIM}│${RESET} ${DIM}%-43s${RESET} ${DIM}${RESET}\n" "$((i+1))" "$name" "$desc"
+        printf "${DIM}│${RESET} ${GREEN}%-2s${RESET} ${DIM}│${RESET} %-23s ${DIM}│${RESET} ${DIM}%-43s${RESET} ${DIM}│${RESET}\n" "$((i+1))" "$name" "$desc"
     done
     
     echo -e "${DIM}├────┴─────────────────────────┴────────────────────────────────────────────┤${RESET}"
-    echo -e "${DIM}│${RESET} ${YELLOW}0${RESET}  ${DIM}│${RESET} Exit                                                              ${DIM}${RESET}"
-    echo -e "${DIM}└────┴──────────────────────────────────────────────────────────────────────┘${RESET}"
+    echo -e "${DIM}│${RESET} ${YELLOW}0${RESET}  ${DIM}│${RESET} Exit                                                              ${DIM}│${RESET}"
+    echo -e "${DIM}└────┴───────────────────────────────────────────────────────────────────────┘${RESET}"
 }
 
 show_status() {
@@ -82,6 +80,7 @@ clone_project() {
     local path="$PROJECTS_DIR/$name"
     
     if [ -d "$path" ]; then
+        show_status "info" "Project already cloned"
         return 0
     fi
     
@@ -91,7 +90,7 @@ clone_project() {
     wait $pid
     
     if [ $? -eq 0 ]; then
-        show_status "success" "Project cloned successfully"
+        show_status "success" "Project cloned"
         return 0
     else
         show_status "error" "Failed to clone project"
@@ -104,20 +103,27 @@ launch_project() {
     local path="$PROJECTS_DIR/$name"
     
     echo ""
-    echo -e "${BOLD}Launching: ${CYAN}$name${RESET}"
-    echo -e "${DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+    echo -e "${CYAN}╔════════════════════════════════════════════════════════════════════════════╗${RESET}"
+    echo -e "${CYAN}║${RESET}  ${BOLD}Launching: $name${RESET}"
+    echo -e "${CYAN}╚════════════════════════════════════════════════════════════════════════════╝${RESET}\n"
     
-    # Check for run script
-    if [ -f "$path/run.sh" ]; then
-        cd "$path"
+    cd "$path"
+    
+    # Execute run.sh if exists, otherwise try alternatives
+    if [ -f "run.sh" ]; then
+        chmod +x run.sh
         bash run.sh
-    elif [ -f "$path/Makefile" ]; then
-        cd "$path"
-        make
+    elif [ -f "Makefile" ]; then
+        show_status "info" "No run.sh found, using Makefile"
+        make && make run 2>/dev/null || make
+    elif [ -f "CMakeLists.txt" ]; then
+        show_status "info" "No run.sh found, using CMake"
+        mkdir -p build && cd build
+        cmake .. && make
     else
-        show_status "warn" "No run.sh or Makefile found"
-        show_status "info" "Opening shell in project directory"
-        cd "$path"
+        show_status "warn" "No run.sh, Makefile, or CMakeLists.txt found"
+        show_status "info" "Opening interactive shell"
+        echo ""
         bash
     fi
     
@@ -134,7 +140,7 @@ main() {
         clear_screen
         draw_table
         echo ""
-        read -rp "  Select project: " choice
+        read -rp "  ${BOLD}Select project:${RESET} " choice
         
         # Validate input
         if ! [[ "$choice" =~ ^[0-9]+$ ]]; then

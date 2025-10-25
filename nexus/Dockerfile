@@ -1,51 +1,58 @@
-# Image de base Ubuntu minimale
+# syntax=docker/dockerfile:1
 FROM ubuntu:22.04
 
-# Évite les prompts interactifs
-ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive \
+    TERM=xterm-256color
 
 # ============================
-# DÉPENDANCES DE BASE
+# BASE SYSTEM
 # ============================
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    # Core tools
     curl \
+    wget \
     git \
     nano \
-    && rm -rf /var/lib/apt/lists/*
+    vim \
+    # Build essentials
+    build-essential \
+    gcc \
+    g++ \
+    make \
+    cmake \
+    # Utilities
+    ca-certificates \
+    software-properties-common \
+    apt-utils \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
 # ============================
-# DÉPENDANCES PROJETS (décommenter selon besoin)
+# GIT CONFIGURATION
 # ============================
-# Python
-# RUN apt-get update && apt-get install -y python3 python3-pip && rm -rf /var/lib/apt/lists/*
-
-# Node.js
-# RUN apt-get update && apt-get install -y nodejs npm && rm -rf /var/lib/apt/lists/*
-
-# Compilation C/C++
-# RUN apt-get update && apt-get install -y build-essential && rm -rf /var/lib/apt/lists/*
-
-# Rust
-# RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-
-# Go
-# RUN apt-get update && apt-get install -y golang && rm -rf /var/lib/apt/lists/*
+RUN git config --global credential.helper store \
+    && git config --global user.email "nexus@local" \
+    && git config --global user.name "Nexus Dev" \
+    && git config --global init.defaultBranch main \
+    && git config --global pull.rebase false
 
 # ============================
-# Utilisateur non-root
+# USER SETUP
 # ============================
-RUN useradd -m -s /bin/bash dev
+RUN useradd -m -s /bin/bash -u 1000 dev \
+    && mkdir -p /workspace/projects \
+    && chown -R dev:dev /workspace
 
-# Copier le script de démarrage et rendre exécutable
-COPY startup.sh /home/dev/startup.sh
-RUN chmod +x /home/dev/startup.sh
-
-# Passer à l'utilisateur dev
 USER dev
 WORKDIR /workspace
 
-# Terminal coloré
-RUN echo 'export PS1="\[\e[1;32m\]nexus\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]$ "' >> ~/.bashrc
+# Shell configuration
+RUN echo 'export PS1="\[\e[1;32m\]nexus\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]\$ "' >> ~/.bashrc \
+    && echo 'export TERM=xterm-256color' >> ~/.bashrc \
+    && echo 'alias ll="ls -lah"' >> ~/.bashrc
 
-# Script de démarrage
+# Startup script
+COPY --chown=dev:dev startup.sh /home/dev/startup.sh
+RUN chmod +x /home/dev/startup.sh
+
 CMD ["/home/dev/startup.sh"]

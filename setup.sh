@@ -97,26 +97,27 @@ check_docker() {
 ### ===========================
 
 setup_files() {
-    print_section "Files"
+    print_section "Configuration"
     mkdir -p "$BASE_DIR"
     
     # Skip if files already exist
     if [[ -f "$BASE_DIR/Dockerfile" && -f "$BASE_DIR/startup.sh" ]]; then
-        print_ok "Already present"
+        print_ok "Files ready"
         return 0
     fi
     
     # Download from GitHub
+    print_warn "Downloading configuration..."
     curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/nexus/Dockerfile \
-        -o "$BASE_DIR/Dockerfile" || die "Failed to download Dockerfile"
+        -o "$BASE_DIR/Dockerfile" || die "Failed to download Dockerfile" 1
     curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/nexus/startup.sh \
-        -o "$BASE_DIR/startup.sh" || die "Failed to download startup.sh"
+        -o "$BASE_DIR/startup.sh" || die "Failed to download startup.sh" 1
     chmod +x "$BASE_DIR/startup.sh"
-    print_ok "Downloaded from GitHub"
+    print_ok "Configuration downloaded"
 }
 
 build_image() {
-    print_section "Building image"
+    print_section "Docker Image"
     
     # Check if rebuild needed
     if docker image inspect "$IMG" &>/dev/null; then
@@ -127,10 +128,10 @@ build_image() {
             print_ok "Image up-to-date"
             return 0
         fi
+        print_warn "Dockerfile changed, rebuilding..."
     fi
     
     # Build with loading animation
-    echo -n "  Building"
     docker build -q \
         --label "dockerfile.hash=$(get_hash "$BASE_DIR/Dockerfile")" \
         --label "build.timestamp=$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
@@ -139,6 +140,7 @@ build_image() {
     local pid=$!
     local spin='⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
     local i=0
+    echo -n "  "
     while kill -0 $pid 2>/dev/null; do
         i=$(( (i+1) %10 ))
         printf "\r  \033[36m${spin:$i:1}\033[0m Building image..."
@@ -148,9 +150,9 @@ build_image() {
     local exit_code=$?
     
     if [ $exit_code -eq 0 ]; then
-        printf "\r  \033[32m✓\033[0m Built successfully       \n"
+        printf "\r  \033[32m✓\033[0m Image built successfully    \n"
     else
-        printf "\r  \033[31m✗\033[0m Build failed            \n"
+        printf "\r  \033[31m✗\033[0m Build failed               \n"
         die "Docker build failed" $exit_code
     fi
 }
@@ -163,6 +165,7 @@ run_container() {
     print_section "Launching Nexus"
     mkdir -p "$PROJECTS"
     
+    echo ""
     docker run -it --rm \
         --name nexus_terminal \
         -v "$PROJECTS:/workspace/projects" \
@@ -178,11 +181,15 @@ cleanup() {
     print_section "Cleanup"
     
     # Always remove projects
-    [[ -d "$PROJECTS" ]] && rm -rf "$PROJECTS"
-    print_ok "Projects removed"
+    if [[ -d "$PROJECTS" ]]; then
+        rm -rf "$PROJECTS"
+        print_ok "Projects removed"
+    fi
     
     # Always remove Docker image
-    docker rmi "$IMG" &>/dev/null && print_ok "Image removed" || true
+    if docker rmi "$IMG" &>/dev/null; then
+        print_ok "Image removed"
+    fi
     
     # Close Docker if we started it
     if [ "$DOCKER_STARTED" = true ]; then
@@ -198,8 +205,9 @@ cleanup() {
         print_ok "Docker closed"
     fi
     
-    # Ask only for Nexus folder (Dockerfile + startup.sh)
-    read -rp "  Remove Nexus configuration files? [y/N]: " choice
+    # Ask for configuration cleanup
+    echo ""
+    read -rp "  Remove configuration files? [y/N]: " choice
     if [[ "$choice" =~ ^[Yy]$ ]]; then
         rm -rf "$BASE_DIR"
         print_ok "Configuration removed"
@@ -214,7 +222,7 @@ cleanup() {
 
 main() {
     echo -e "\n\033[1;36m╔════════════════════════════════╗\033[0m"
-    echo -e "\033[1;36m║\033[0m  \033[1mNEXUS DEV ENVIRONMENT\033[0m         \033[1;36m║\033[0m"
+    echo -e "\033[1;36m║\033[0m  \033[1mNEXUS DEV ENVIRONMENT\033[0m      \033[1;36m║\033[0m"
     echo -e "\033[1;36m╚════════════════════════════════╝\033[0m"
     
     OS=$(detect_os)
