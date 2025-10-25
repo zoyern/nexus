@@ -28,7 +28,7 @@ check_docker() {
     while ! docker info &>/dev/null; do
         if [ $COUNT -eq 0 ]; then
             echo "[Docker non actif] Tentative d'ouverture automatique de Docker Desktop..."
-            powershell.exe -Command "Start-Process 'C:\Program Files\Docker\Docker\Docker Desktop.exe'"
+            powershell.exe -Command "Start-Process 'C:\Program Files\Docker\Docker\Docker Desktop.exe'" || true
         fi
         COUNT=$((COUNT+1))
         if [ $COUNT -gt $MAX_WAIT ]; then
@@ -46,10 +46,11 @@ setup_dir() {
     echo "Création du dossier Nexus local..."
     mkdir -p "$BASE_DIR"
 
+    # Télécharger uniquement si fichiers absents ou force
     if [[ "$FORCE_DOWNLOAD" = true || ! -f "$BASE_DIR/Dockerfile" || ! -f "$BASE_DIR/startup.sh" ]]; then
         echo "Téléchargement des fichiers depuis GitHub..."
-        curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/assets/Dockerfile -o "$BASE_DIR/Dockerfile"
-        curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/assets/startup.sh -o "$BASE_DIR/startup.sh"
+        curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/nexus/Dockerfile -o "$BASE_DIR/Dockerfile"
+        curl -fsSL https://raw.githubusercontent.com/zoyern/nexus/main/nexus/startup.sh -o "$BASE_DIR/startup.sh"
         chmod +x "$BASE_DIR/startup.sh"
     else
         echo "Fichiers Dockerfile et startup.sh déjà présents, pas de téléchargement."
@@ -87,7 +88,7 @@ cleanup_prompt() {
         echo "Export de l'image Docker dans $BASE_DIR/$IMG.tar..."
         docker save -o "$BASE_DIR/$IMG.tar" "$IMG"
         docker rmi "$IMG" 2>/dev/null || true
-        rm -rf "$BASE_DIR"  # Supprime tout y compris l'image exportée si tu veux clean complet
+        rm -rf "$BASE_DIR"
         echo "[Nexus nettoyé ✅]"
     else
         echo "L'image Docker est conservée et peut être retrouvée dans $BASE_DIR/$IMG.tar"
